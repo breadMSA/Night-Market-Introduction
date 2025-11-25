@@ -8,7 +8,7 @@
     <!-- 引入 Marked.js 用於解析 Markdown -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     
-    <!-- Google Fonts: Noto Sans TC & Stick (for Neon effect) -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Stick&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -35,68 +35,28 @@
         }
     </script>
     <style>
-        /* 自定義霓虹文字閃爍效果 */
-        .text-glow {
-            text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
-        }
-        .text-glow-blue {
-            text-shadow: 0 0 5px #fff, 0 0 10px #00ffff, 0 0 20px #00ffff;
-        }
-        /* 隱藏滾動條但保留功能 */
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        /* AI 聊天視窗動畫 */
+        .text-glow { text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff; }
+        .text-glow-blue { text-shadow: 0 0 5px #fff, 0 0 10px #00ffff, 0 0 20px #00ffff; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         @keyframes slideIn {
             from { transform: translateY(100%); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-        .chat-slide-in {
-            animation: slideIn 0.3s ease-out forwards;
-        }
+        .chat-slide-in { animation: slideIn 0.3s ease-out forwards; }
         
-        /* Markdown 樣式優化 (Prose) */
-        .prose h3 {
-            color: #ff00ff; /* 霓虹粉 */
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-        }
-        .prose ul {
-            list-style-type: disc;
-            padding-left: 1.2rem;
-            margin-bottom: 0.8rem;
-        }
-        .prose ol {
-            list-style-type: decimal;
-            padding-left: 1.2rem;
-            margin-bottom: 0.8rem;
-        }
-        .prose li {
-            margin-bottom: 0.3rem;
-        }
-        .prose strong {
-            color: #ffff00; /* 霓虹黃 */
-            font-weight: bold;
-        }
-        .prose p {
-            margin-bottom: 0.8rem;
-            line-height: 1.6;
-        }
-        .prose hr {
-            border-color: #333;
-            margin: 1rem 0;
-        }
+        /* Markdown 樣式 */
+        .prose h3 { color: #ff00ff; font-weight: bold; font-size: 1.1rem; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .prose ul { list-style-type: disc; padding-left: 1.2rem; margin-bottom: 0.8rem; }
+        .prose ol { list-style-type: decimal; padding-left: 1.2rem; margin-bottom: 0.8rem; }
+        .prose li { margin-bottom: 0.3rem; }
+        .prose strong { color: #ffff00; font-weight: bold; }
+        .prose p { margin-bottom: 0.8rem; line-height: 1.6; }
     </style>
 </head>
 <body class="bg-night text-gray-200 font-sans antialiased overflow-x-hidden">
 
-    <!-- 導覽列 Navbar -->
+    <!-- 導覽列 -->
     <nav class="fixed w-full z-50 bg-night/90 backdrop-blur-md border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
@@ -117,13 +77,12 @@
         </div>
     </nav>
 
-    <!-- 主視覺 Hero Section -->
+    <!-- 主視覺 -->
     <section class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1552554625-5e60d5c31270?q=80&w=2574&auto=format&fit=crop" alt="Night Market" class="w-full h-full object-cover opacity-60">
             <div class="absolute inset-0 bg-gradient-to-t from-night via-night/50 to-transparent"></div>
         </div>
-        
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-[-50px]">
             <h1 class="font-neon text-5xl md:text-7xl mb-6 text-white text-glow animate-pulse">
                 士林夜市<br><span class="text-neonYellow text-glow-blue">大冒險</span>
@@ -137,14 +96,12 @@
         </div>
     </section>
 
-    <!-- 必吃經典 Section -->
+    <!-- 必吃經典 -->
     <section id="food" class="py-20 px-4 max-w-7xl mx-auto">
         <h2 class="text-4xl font-neon text-center mb-16 text-white">
             <span class="border-b-4 border-neonPink pb-2">🔥 必吃經典</span>
         </h2>
-        
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- 雞排 Card -->
             <div class="bg-cardBg rounded-xl overflow-hidden hover:shadow-neon-pink transition-all duration-300 group border border-gray-800">
                 <div class="h-48 overflow-hidden">
                     <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="雞排">
@@ -161,8 +118,7 @@
                     </div>
                 </div>
             </div>
-
-            <!-- 生煎包 Card -->
+            <!-- 生煎包 -->
             <div class="bg-cardBg rounded-xl overflow-hidden hover:shadow-neon-pink transition-all duration-300 group border border-gray-800">
                 <div class="h-48 overflow-hidden">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Shengjian_mantou_01.jpg/800px-Shengjian_mantou_01.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="生煎包">
@@ -179,8 +135,7 @@
                     </div>
                 </div>
             </div>
-
-            <!-- 蚵仔煎 Card -->
+            <!-- 蚵仔煎 -->
             <div class="bg-cardBg rounded-xl overflow-hidden hover:shadow-neon-pink transition-all duration-300 group border border-gray-800">
                 <div class="h-48 overflow-hidden">
                     <img src="https://images.unsplash.com/photo-1605218427360-1de983226db9?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="蚵仔煎">
@@ -200,13 +155,12 @@
         </div>
     </section>
 
-    <!-- 在地巷仔內 & 娛樂 (合併區塊) -->
+    <!-- 娛樂區 -->
     <section id="fun" class="py-20 bg-gradient-to-b from-cardBg to-night">
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-4xl font-neon text-center mb-16 text-white">
                 <span class="border-b-4 border-neonBlue pb-2">🕹️ 巷仔內 & 玩樂</span>
             </h2>
-
             <div class="space-y-20">
                 <div class="flex flex-col md:flex-row items-center gap-10">
                     <div class="w-full md:w-1/2">
@@ -220,7 +174,6 @@
                         </p>
                     </div>
                 </div>
-
                 <div class="flex flex-col md:flex-row-reverse items-center gap-10">
                     <div class="w-full md:w-1/2">
                         <img src="https://images.unsplash.com/photo-1596450523479-78f7aee44964?q=80&w=1000&auto=format&fit=crop" alt="Cold Noodles" class="rounded-lg shadow-neon-yellow transform rotate-2 hover:rotate-0 transition-all duration-500 w-full h-64 object-cover">
@@ -237,7 +190,7 @@
         </div>
     </section>
 
-    <!-- 交通指南 & 地圖 -->
+    <!-- 交通指南 -->
     <section id="map" class="py-20 px-4 max-w-5xl mx-auto text-center">
         <h2 class="text-4xl font-neon mb-10 text-white">📍 如何抵達</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
@@ -263,25 +216,19 @@
     <!-- Footer -->
     <footer class="bg-black py-8 text-center text-gray-600 text-sm border-t border-gray-900">
         <p>© 2025 士林夜市大冒險. All rights reserved.</p>
-        <p class="mt-2 flex justify-center items-center gap-2">
-            Powered by <span class="text-gray-400">Vercel</span> & <span class="text-gray-400">AI</span>
-        </p>
+        <p class="mt-2 flex justify-center items-center gap-2">Powered by Vercel & AI</p>
     </footer>
 
-    <!-- AI 嚮導浮動按鈕 -->
+    <!-- AI 按鈕與視窗 -->
     <div class="fixed bottom-6 right-6 z-50">
         <button onclick="toggleChat()" class="relative group">
             <div class="absolute inset-0 bg-neonPink rounded-full blur opacity-75 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
             <div class="relative bg-black border-2 border-neonPink text-white p-4 rounded-full w-16 h-16 flex items-center justify-center overflow-hidden">
                 <span class="font-neon text-2xl">王</span>
             </div>
-            <span class="absolute right-full mr-4 top-1/2 transform -translate-y-1/2 bg-white text-black text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                問問老王！
-            </span>
         </button>
     </div>
 
-    <!-- AI 聊天視窗 -->
     <div id="chat-window" class="fixed bottom-24 right-6 w-80 md:w-96 bg-gray-900 border border-neonPink rounded-2xl shadow-2xl z-50 hidden flex flex-col h-[500px]">
         <div class="bg-gray-800 p-4 rounded-t-2xl flex justify-between items-center border-b border-gray-700">
             <div class="flex items-center gap-3">
@@ -298,7 +245,7 @@
             <div class="flex items-start gap-2">
                 <div class="w-8 h-8 bg-neonPink rounded-full flex-shrink-0 flex items-center justify-center text-black font-bold text-xs">王</div>
                 <div class="bg-gray-800 text-gray-200 p-3 rounded-r-lg rounded-bl-lg text-sm border border-gray-700">
-                    嘿！我是老王，士林這一帶我最熟啦！想找好吃的、還是想知道哪裡不用排隊？問我就對了！😎
+                    嘿！我是老王，士林這一帶我最熟啦！想找好吃的？問我就對了！😎
                 </div>
             </div>
         </div>
@@ -307,118 +254,111 @@
             <div class="flex gap-2">
                 <input type="text" id="user-input" placeholder="問老王：雞排要排很久嗎？" 
                     class="flex-1 bg-gray-900 text-white text-sm rounded-full px-4 py-2 border border-gray-600 focus:outline-none focus:border-neonPink">
-                <button onclick="sendMessage()" class="bg-neonPink text-black rounded-full w-10 h-10 flex items-center justify-center font-bold hover:bg-white transition-colors">
-                    ➤
-                </button>
+                <button onclick="sendMessage()" class="bg-neonPink text-black rounded-full w-10 h-10 flex items-center justify-center font-bold hover:bg-white transition-colors">➤</button>
             </div>
             <div class="flex gap-2 mt-3 overflow-x-auto scrollbar-hide">
-                <button onclick="quickAsk('必吃推薦')" class="whitespace-nowrap bg-gray-700 text-xs text-gray-300 px-3 py-1 rounded-full hover:bg-gray-600">必吃推薦 🍗</button>
-                <button onclick="quickAsk('廁所在哪')" class="whitespace-nowrap bg-gray-700 text-xs text-gray-300 px-3 py-1 rounded-full hover:bg-gray-600">廁所在哪 🚽</button>
-                <button onclick="quickAsk('雨天備案')" class="whitespace-nowrap bg-gray-700 text-xs text-gray-300 px-3 py-1 rounded-full hover:bg-gray-600">下雨怎辦 ☔</button>
+                <button onclick="quickAsk('必吃推薦')" class="bg-gray-700 text-xs text-gray-300 px-3 py-1 rounded-full hover:bg-gray-600">必吃推薦</button>
+                <button onclick="quickAsk('廁所在哪')" class="bg-gray-700 text-xs text-gray-300 px-3 py-1 rounded-full hover:bg-gray-600">廁所在哪</button>
+                <button onclick="quickAsk('下雨怎辦')" class="bg-gray-700 text-xs text-gray-300 px-3 py-1 rounded-full hover:bg-gray-600">下雨怎辦</button>
             </div>
         </div>
     </div>
 
-<script>
-    // 側邊聊天視窗開關
-    function toggleChat() {
-        const chatWindow = document.getElementById('chat-window');
-        if (chatWindow.classList.contains('hidden')) {
-            chatWindow.classList.remove('hidden');
-            chatWindow.classList.add('chat-slide-in');
-        } else {
-            chatWindow.classList.add('hidden');
-            chatWindow.classList.remove('chat-slide-in');
-        }
-    }
-
-    // 快速提問按鈕
-    function quickAsk(msg) {
-        document.getElementById('user-input').value = msg;
-        sendMessage();
-    }
-
-    // 發送訊息主程式
-    async function sendMessage() {
-        const input = document.getElementById('user-input');
-        const message = input.value.trim();
-        if (!message) return;
-
-        // 1. 顯示使用者訊息
-        appendMessage('user', message);
-        input.value = '';
-
-        // 2. 顯示 AI 思考中...
-        const aiMessageDiv = appendMessage('ai', ''); 
-        aiMessageDiv.innerHTML = '<span class="animate-pulse">...</span>';
-
-        try {
-            // 這是你設定的網址
-            const VERCEL_URL = 'https://night-market-bice.vercel.app/api/chat'; 
-
-            const response = await fetch(VERCEL_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: message })
-            });
-
-            if (!response.ok) throw new Error('Network response was not ok');
-
-            // 3. 處理串流文字 (打字機效果)
-            const reader = response.body.getReader();
-            const decoder = new TextDecoder();
-            let fullText = '';
-
-            while (true) {
-                const { done, value } = await reader.read();
-                if (done) break;
-                
-                const chunk = decoder.decode(value, { stream: true });
-                fullText += chunk;
-                
-                // 使用 marked 解析 Markdown
-                aiMessageDiv.innerHTML = marked.parse(fullText);
-                
-                // 自動捲動到底部
-                const chatMessages = document.getElementById('chat-messages');
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+    <script>
+        function toggleChat() {
+            const chatWindow = document.getElementById('chat-window');
+            if (chatWindow.classList.contains('hidden')) {
+                chatWindow.classList.remove('hidden');
+                chatWindow.classList.add('chat-slide-in');
+            } else {
+                chatWindow.classList.add('hidden');
+                chatWindow.classList.remove('chat-slide-in');
             }
-
-        } catch (error) {
-            console.error('Error:', error);
-            aiMessageDiv.innerHTML = '老王連線失敗 (請檢查 F12 Console 看錯誤原因)';
         }
-    }
 
-    // 建立訊息氣泡
-    function appendMessage(sender, text) {
-        const chatMessages = document.getElementById('chat-messages');
-        const div = document.createElement('div');
-        div.className = sender === 'user' ? 'flex justify-end' : 'flex items-start gap-2';
-        
-        const contentDiv = document.createElement('div');
-        
-        if (sender === 'user') {
-            contentDiv.className = "bg-neonPink text-black p-3 rounded-l-lg rounded-br-lg text-sm font-bold max-w-[80%]";
-            contentDiv.textContent = text;
-            div.appendChild(contentDiv);
-        } else {
-            div.innerHTML = `<div class="w-8 h-8 bg-neonPink rounded-full flex-shrink-0 flex items-center justify-center text-black font-bold text-xs">王</div>`;
-            contentDiv.className = "bg-gray-800 text-gray-200 p-3 rounded-r-lg rounded-bl-lg text-sm border border-gray-700 max-w-[90%] prose";
-            contentDiv.innerHTML = text;
-            div.appendChild(contentDiv);
+        function quickAsk(msg) {
+            document.getElementById('user-input').value = msg;
+            sendMessage();
         }
-        
-        chatMessages.appendChild(div);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-        return contentDiv;
-    }
 
-    // Enter 鍵監聽
-    document.getElementById('user-input').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') sendMessage();
-    });
-</script>
+        async function sendMessage() {
+            const input = document.getElementById('user-input');
+            const message = input.value.trim();
+            console.log("嘗試發送訊息:", message); // 除錯訊息
+
+            if (!message) return;
+
+            appendMessage('user', message);
+            input.value = '';
+
+            const aiMessageDiv = appendMessage('ai', ''); 
+            aiMessageDiv.innerHTML = '<span class="animate-pulse">...</span>';
+
+            try {
+                // 使用你提供的正確網址
+                const VERCEL_URL = 'https://night-market-bice.vercel.app/api/chat'; 
+                console.log("連線到:", VERCEL_URL); // 除錯訊息
+
+                const response = await fetch(VERCEL_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message })
+                });
+
+                if (!response.ok) throw new Error('伺服器回應錯誤: ' + response.status);
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let fullText = '';
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+                    fullText += decoder.decode(value, { stream: true });
+                    
+                    // 使用 marked 解析 (需確保 marked 已載入)
+                    if (typeof marked !== 'undefined') {
+                        aiMessageDiv.innerHTML = marked.parse(fullText);
+                    } else {
+                        aiMessageDiv.textContent = fullText;
+                    }
+                    
+                    const chatMessages = document.getElementById('chat-messages');
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+
+            } catch (error) {
+                console.error('發生錯誤:', error);
+                aiMessageDiv.innerHTML = '哎呀！老王現在有點忙（連線錯誤），請檢查 Console 錯誤訊息！😅';
+            }
+        }
+
+        function appendMessage(sender, text) {
+            const chatMessages = document.getElementById('chat-messages');
+            const div = document.createElement('div');
+            div.className = sender === 'user' ? 'flex justify-end' : 'flex items-start gap-2';
+            
+            const contentDiv = document.createElement('div');
+            if (sender === 'user') {
+                contentDiv.className = "bg-neonPink text-black p-3 rounded-l-lg rounded-br-lg text-sm font-bold max-w-[80%]";
+                contentDiv.textContent = text;
+                div.appendChild(contentDiv);
+            } else {
+                div.innerHTML = `<div class="w-8 h-8 bg-neonPink rounded-full flex-shrink-0 flex items-center justify-center text-black font-bold text-xs">王</div>`;
+                contentDiv.className = "bg-gray-800 text-gray-200 p-3 rounded-r-lg rounded-bl-lg text-sm border border-gray-700 max-w-[90%] prose";
+                contentDiv.innerHTML = text; 
+                div.appendChild(contentDiv);
+            }
+            
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return contentDiv;
+        }
+
+        // Enter 鍵發送
+        document.getElementById('user-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
 </body>
 </html>
-
