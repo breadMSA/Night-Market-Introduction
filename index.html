@@ -319,116 +319,106 @@
         </div>
     </div>
 
-    <script>
-        function toggleChat() {
-            const chatWindow = document.getElementById('chat-window');
-            if (chatWindow.classList.contains('hidden')) {
-                chatWindow.classList.remove('hidden');
-                chatWindow.classList.add('chat-slide-in');
-            } else {
-                chatWindow.classList.add('hidden');
-                chatWindow.classList.remove('chat-slide-in');
+<script>
+    // 側邊聊天視窗開關
+    function toggleChat() {
+        const chatWindow = document.getElementById('chat-window');
+        if (chatWindow.classList.contains('hidden')) {
+            chatWindow.classList.remove('hidden');
+            chatWindow.classList.add('chat-slide-in');
+        } else {
+            chatWindow.classList.add('hidden');
+            chatWindow.classList.remove('chat-slide-in');
+        }
+    }
+
+    // 快速提問按鈕
+    function quickAsk(msg) {
+        document.getElementById('user-input').value = msg;
+        sendMessage();
+    }
+
+    // 發送訊息主程式
+    async function sendMessage() {
+        const input = document.getElementById('user-input');
+        const message = input.value.trim();
+        if (!message) return;
+
+        // 1. 顯示使用者訊息
+        appendMessage('user', message);
+        input.value = '';
+
+        // 2. 顯示 AI 思考中...
+        const aiMessageDiv = appendMessage('ai', ''); 
+        aiMessageDiv.innerHTML = '<span class="animate-pulse">...</span>';
+
+        try {
+            // 這是你設定的網址
+            const VERCEL_URL = 'https://night-market-bice.vercel.app/api/chat'; 
+
+            const response = await fetch(VERCEL_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message })
+            });
+
+            if (!response.ok) throw new Error('Network response was not ok');
+
+            // 3. 處理串流文字 (打字機效果)
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+            let fullText = '';
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+                
+                const chunk = decoder.decode(value, { stream: true });
+                fullText += chunk;
+                
+                // 使用 marked 解析 Markdown
+                aiMessageDiv.innerHTML = marked.parse(fullText);
+                
+                // 自動捲動到底部
+                const chatMessages = document.getElementById('chat-messages');
+                chatMessages.scrollTop = chatMessages.scrollHeight;
             }
+
+        } catch (error) {
+            console.error('Error:', error);
+            aiMessageDiv.innerHTML = '老王連線失敗 (請檢查 F12 Console 看錯誤原因)';
         }
+    }
 
-        function quickAsk(msg) {
-            document.getElementById('user-input').value = msg;
-            sendMessage();
+    // 建立訊息氣泡
+    function appendMessage(sender, text) {
+        const chatMessages = document.getElementById('chat-messages');
+        const div = document.createElement('div');
+        div.className = sender === 'user' ? 'flex justify-end' : 'flex items-start gap-2';
+        
+        const contentDiv = document.createElement('div');
+        
+        if (sender === 'user') {
+            contentDiv.className = "bg-neonPink text-black p-3 rounded-l-lg rounded-br-lg text-sm font-bold max-w-[80%]";
+            contentDiv.textContent = text;
+            div.appendChild(contentDiv);
+        } else {
+            div.innerHTML = `<div class="w-8 h-8 bg-neonPink rounded-full flex-shrink-0 flex items-center justify-center text-black font-bold text-xs">王</div>`;
+            contentDiv.className = "bg-gray-800 text-gray-200 p-3 rounded-r-lg rounded-bl-lg text-sm border border-gray-700 max-w-[90%] prose";
+            contentDiv.innerHTML = text;
+            div.appendChild(contentDiv);
         }
+        
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        return contentDiv;
+    }
 
-        async function sendMessage() {
-            const input = document.getElementById('user-input');
-            const message = input.value.trim();
-            if (!message) return;
-
-            // 1. 顯示使用者訊息
-            appendMessage('user', message);
-            input.value = '';
-
-            // 2. 建立 AI 訊息的容器 (這是為了支援串流，先佔位)
-            const aiMessageDiv = appendMessage('ai', ''); 
-            // 讓使用者知道老王正在思考
-            aiMessageDiv.innerHTML = '<span class="animate-pulse">...</span>';
-
-            try {
-                const VERCEL_URL = 'https://night-market-bice.vercel.app/api/chat'; 
-
-                // 檢查是否忘了改網址
-                if(VERCEL_URL.includes('YOUR_VERCEL_URL')) {
-                    aiMessageDiv.innerHTML = '⚠️ 請先修改 index.html 裡的 Vercel 網址！';
-                    return;
-                }
-
-                const response = await fetch(VERCEL_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: message })
-                });
-
-                if (!response.ok) throw new Error('Network response was not ok');
-
-                // 3. 處理串流回應 (Streaming)
-                const reader = response.body.getReader();
-                const decoder = new TextDecoder();
-                let fullText = '';
-
-                // 開始讀取串流
-                while (true) {
-                    const { done, value } = await reader.read();
-                    if (done) break;
-
-                    // 解碼收到的片段
-                    const chunk = decoder.decode(value, { stream: true });
-                    fullText += chunk;
-
-                    // 即時渲染 Markdown 到畫面上
-                    aiMessageDiv.innerHTML = marked.parse(fullText);
-                    
-                    // 捲動到底部
-                    const chatMessages = document.getElementById('chat-messages');
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                }
-
-            } catch (error) {
-                console.error('Error:', error);
-                aiMessageDiv.innerHTML = '哎呀！老王現在有點忙（連線錯誤），請稍後再試！😅';
-            }
-        }
-
-        // 修改後的 appendMessage：回傳 div 元素以便後續更新內容
-        function appendMessage(sender, text) {
-            const chatMessages = document.getElementById('chat-messages');
-            const div = document.createElement('div');
-            div.className = sender === 'user' ? 'flex justify-end' : 'flex items-start gap-2';
-            
-            // 建立內容區塊
-            const contentDiv = document.createElement('div');
-            
-            if (sender === 'user') {
-                contentDiv.className = "bg-neonPink text-black p-3 rounded-l-lg rounded-br-lg text-sm font-bold max-w-[80%]";
-                contentDiv.textContent = text;
-                div.appendChild(contentDiv);
-            } else {
-                // AI 訊息區塊：加入 prose 類別以支援 Markdown 樣式
-                div.innerHTML = `
-                    <div class="w-8 h-8 bg-neonPink rounded-full flex-shrink-0 flex items-center justify-center text-black font-bold text-xs">王</div>
-                `;
-                contentDiv.className = "bg-gray-800 text-gray-200 p-3 rounded-r-lg rounded-bl-lg text-sm border border-gray-700 max-w-[90%] prose";
-                contentDiv.innerHTML = text; // 這裡先放入初始文字
-                div.appendChild(contentDiv);
-            }
-            
-            chatMessages.appendChild(div);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-            
-            // 回傳內容的 div，讓 sendMessage 可以持續更新它
-            return contentDiv;
-        }
-
-        // Enter 鍵發送
-        document.getElementById('user-input').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') sendMessage();
-        });
-    </script>
+    // Enter 鍵監聽
+    document.getElementById('user-input').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') sendMessage();
+    });
+</script>
 </body>
 </html>
+
