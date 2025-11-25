@@ -336,7 +336,7 @@
             try {
                 // 3. 發送請求到 Vercel Function (後端 API)
                 // 注意：在本地測試如果沒有後端，會報錯。部署後才能正常運作。
-                const response = await fetch('https://night-market-irfr8yi6q-breads-projects-b1906cb9.vercel.app/api/chat', {
+                const response = await fetch('https://night-market-bice.vercel.app/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ message: message })
@@ -405,4 +405,5 @@
         });
     </script>
 </body>
+
 </html>
