@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 引入 Marked.js 用於解析 Markdown -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Stick&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Stick&display=swap"
+        rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -35,25 +37,76 @@
         }
     </script>
     <style>
-        .text-glow { text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff; }
-        .text-glow-blue { text-shadow: 0 0 5px #fff, 0 0 10px #00ffff, 0 0 20px #00ffff; }
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-        @keyframes slideIn {
-            from { transform: translateY(100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .text-glow {
+            text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
         }
-        .chat-slide-in { animation: slideIn 0.3s ease-out forwards; }
-        
+
+        .text-glow-blue {
+            text-shadow: 0 0 5px #fff, 0 0 10px #00ffff, 0 0 20px #00ffff;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .chat-slide-in {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+
         /* Markdown 樣式 */
-        .prose h3 { color: #ff00ff; font-weight: bold; font-size: 1.1rem; margin-top: 1rem; margin-bottom: 0.5rem; }
-        .prose ul { list-style-type: disc; padding-left: 1.2rem; margin-bottom: 0.8rem; }
-        .prose ol { list-style-type: decimal; padding-left: 1.2rem; margin-bottom: 0.8rem; }
-        .prose li { margin-bottom: 0.3rem; }
-        .prose strong { color: #ffff00; font-weight: bold; }
-        .prose p { margin-bottom: 0.8rem; line-height: 1.6; }
+        .prose h3 {
+            color: #ff00ff;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .prose ul {
+            list-style-type: disc;
+            padding-left: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .prose ol {
+            list-style-type: decimal;
+            padding-left: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .prose li {
+            margin-bottom: 0.3rem;
+        }
+
+        .prose strong {
+            color: #ffff00;
+            font-weight: bold;
+        }
+
+        .prose p {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
     </style>
 </head>
+
 <body class="bg-night text-gray-200 font-sans antialiased overflow-x-hidden">
 
     <!-- 導覽列 -->
@@ -71,7 +124,7 @@
                     </div>
                 </div>
                 <div class="md:hidden text-gray-400 text-sm">
-                   <span class="text-neonYellow">AI 導遊</span>
+                    <span class="text-neonYellow">AI 導遊</span>
                 </div>
             </div>
         </div>
@@ -80,7 +133,8 @@
     <!-- 主視覺 -->
     <section class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1552554625-5e60d5c31270?q=80&w=2574&auto=format&fit=crop" alt="Night Market" class="w-full h-full object-cover opacity-60">
+            <img src="https://images.unsplash.com/photo-1552554625-5e60d5c31270?q=80&w=2574&auto=format&fit=crop"
+                alt="Night Market" class="w-full h-full object-cover opacity-60">
             <div class="absolute inset-0 bg-gradient-to-t from-night via-night/50 to-transparent"></div>
         </div>
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-[-50px]">
@@ -90,7 +144,8 @@
             <p class="text-xl md:text-2xl mb-10 text-gray-300 font-light">
                 別再只吃雞排了！跟著<span class="text-neonPink font-bold">老王</span>，探索台北最生猛的夜生活。
             </p>
-            <button onclick="toggleChat()" class="bg-transparent border-2 border-neonYellow text-neonYellow hover:bg-neonYellow hover:text-black font-bold py-3 px-8 rounded-full transition-all duration-300 shadow-neon-yellow transform hover:scale-105">
+            <button onclick="toggleChat()"
+                class="bg-transparent border-2 border-neonYellow text-neonYellow hover:bg-neonYellow hover:text-black font-bold py-3 px-8 rounded-full transition-all duration-300 shadow-neon-yellow transform hover:scale-105">
                 呼叫老王帶路
             </button>
         </div>
@@ -102,9 +157,12 @@
             <span class="border-b-4 border-neonPink pb-2">🔥 必吃經典</span>
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-cardBg rounded-xl overflow-hidden hover:shadow-neon-pink transition-all duration-300 group border border-gray-800">
+            <div
+                class="bg-cardBg rounded-xl overflow-hidden hover:shadow-neon-pink transition-all duration-300 group border border-gray-800">
                 <div class="h-48 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="雞排">
+                    <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=1000&auto=format&fit=crop"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        alt="雞排">
                 </div>
                 <div class="p-6">
                     <div class="flex justify-between items-center mb-2">
@@ -119,9 +177,12 @@
                 </div>
             </div>
             <!-- 生煎包 -->
-            <div class="bg-cardBg rounded-xl overflow-hidden hover:shadow-neon-pink transition-all duration-300 group border border-gray-800">
+            <div
+                class="bg-cardBg rounded-xl overflow-hidden hover:shadow-neon-pink transition-all duration-300 group border border-gray-800">
                 <div class="h-48 overflow-hidden">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Shengjian_mantou_01.jpg/800px-Shengjian_mantou_01.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="生煎包">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Shengjian_mantou_01.jpg/800px-Shengjian_mantou_01.jpg"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        alt="生煎包">
                 </div>
                 <div class="p-6">
                     <div class="flex justify-between items-center mb-2">
@@ -136,9 +197,12 @@
                 </div>
             </div>
             <!-- 蚵仔煎 -->
-            <div class="bg-cardBg rounded-xl overflow-hidden hover:shadow-neon-pink transition-all duration-300 group border border-gray-800">
+            <div
+                class="bg-cardBg rounded-xl overflow-hidden hover:shadow-neon-pink transition-all duration-300 group border border-gray-800">
                 <div class="h-48 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1605218427360-1de983226db9?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="蚵仔煎">
+                    <img src="https://images.unsplash.com/photo-1605218427360-1de983226db9?q=80&w=1000&auto=format&fit=crop"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        alt="蚵仔煎">
                 </div>
                 <div class="p-6">
                     <div class="flex justify-between items-center mb-2">
@@ -164,7 +228,9 @@
             <div class="space-y-20">
                 <div class="flex flex-col md:flex-row items-center gap-10">
                     <div class="w-full md:w-1/2">
-                        <img src="https://images.unsplash.com/photo-1570535384666-41804d026330?q=80&w=1000&auto=format&fit=crop" alt="Balloon Shooting" class="rounded-lg shadow-neon-blue transform -rotate-2 hover:rotate-0 transition-all duration-500 w-full h-64 object-cover">
+                        <img src="https://images.unsplash.com/photo-1570535384666-41804d026330?q=80&w=1000&auto=format&fit=crop"
+                            alt="Balloon Shooting"
+                            class="rounded-lg shadow-neon-blue transform -rotate-2 hover:rotate-0 transition-all duration-500 w-full h-64 object-cover">
                     </div>
                     <div class="w-full md:w-1/2 text-left">
                         <h3 class="text-2xl font-bold text-neonBlue mb-4">復古射氣球 & 麻將賓果</h3>
@@ -176,7 +242,9 @@
                 </div>
                 <div class="flex flex-col md:flex-row-reverse items-center gap-10">
                     <div class="w-full md:w-1/2">
-                        <img src="https://images.unsplash.com/photo-1596450523479-78f7aee44964?q=80&w=1000&auto=format&fit=crop" alt="Cold Noodles" class="rounded-lg shadow-neon-yellow transform rotate-2 hover:rotate-0 transition-all duration-500 w-full h-64 object-cover">
+                        <img src="https://images.unsplash.com/photo-1596450523479-78f7aee44964?q=80&w=1000&auto=format&fit=crop"
+                            alt="Cold Noodles"
+                            class="rounded-lg shadow-neon-yellow transform rotate-2 hover:rotate-0 transition-all duration-500 w-full h-64 object-cover">
                     </div>
                     <div class="w-full md:w-1/2 text-left md:text-right">
                         <h3 class="text-2xl font-bold text-neonYellow mb-4">家鄉涼麵 (深夜限定)</h3>
@@ -205,11 +273,13 @@
                 <p class="text-sm text-gray-500 mt-2">假日容易客滿，建議停在百齡高中地下停車場。</p>
             </div>
         </div>
-        <div class="w-full h-64 md:h-96 bg-gray-700 rounded-lg flex items-center justify-center relative overflow-hidden group">
+        <div
+            class="w-full h-64 md:h-96 bg-gray-700 rounded-lg flex items-center justify-center relative overflow-hidden group">
             <div class="absolute inset-0 bg-black/60 flex items-center justify-center">
                 <p class="text-neonYellow text-xl border-2 border-neonYellow px-6 py-2 rounded">Google Map 嵌入區</p>
             </div>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Shilin_Night_Market_Entrance_2019.jpg/1200px-Shilin_Night_Market_Entrance_2019.jpg" class="w-full h-full object-cover opacity-30" alt="Map Preview">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Shilin_Night_Market_Entrance_2019.jpg/1200px-Shilin_Night_Market_Entrance_2019.jpg"
+                class="w-full h-full object-cover opacity-30" alt="Map Preview">
         </div>
     </section>
 
@@ -222,17 +292,22 @@
     <!-- AI 按鈕與視窗 -->
     <div class="fixed bottom-6 right-6 z-50">
         <button onclick="toggleChat()" class="relative group">
-            <div class="absolute inset-0 bg-neonPink rounded-full blur opacity-75 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
-            <div class="relative bg-black border-2 border-neonPink text-white p-4 rounded-full w-16 h-16 flex items-center justify-center overflow-hidden">
+            <div
+                class="absolute inset-0 bg-neonPink rounded-full blur opacity-75 group-hover:opacity-100 transition-opacity duration-300 animate-pulse">
+            </div>
+            <div
+                class="relative bg-black border-2 border-neonPink text-white p-4 rounded-full w-16 h-16 flex items-center justify-center overflow-hidden">
                 <span class="font-neon text-2xl">王</span>
             </div>
         </button>
     </div>
 
-    <div id="chat-window" class="fixed bottom-24 right-6 w-80 md:w-96 bg-gray-900 border border-neonPink rounded-2xl shadow-2xl z-50 hidden flex flex-col h-[500px]">
+    <div id="chat-window"
+        class="fixed bottom-24 right-6 w-80 md:w-96 bg-gray-900 border border-neonPink rounded-2xl shadow-2xl z-50 hidden flex flex-col h-[500px]">
         <div class="bg-gray-800 p-4 rounded-t-2xl flex justify-between items-center border-b border-gray-700">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 bg-neonPink rounded-full flex items-center justify-center text-black font-bold">王</div>
+                <div class="w-8 h-8 bg-neonPink rounded-full flex items-center justify-center text-black font-bold">王
+                </div>
                 <div>
                     <h3 class="text-white font-bold text-sm">士林老王</h3>
                     <p class="text-xs text-green-400">● 線上中</p>
@@ -243,7 +318,9 @@
 
         <div id="chat-messages" class="flex-1 p-4 overflow-y-auto scrollbar-hide space-y-4">
             <div class="flex items-start gap-2">
-                <div class="w-8 h-8 bg-neonPink rounded-full flex-shrink-0 flex items-center justify-center text-black font-bold text-xs">王</div>
+                <div
+                    class="w-8 h-8 bg-neonPink rounded-full flex-shrink-0 flex items-center justify-center text-black font-bold text-xs">
+                    王</div>
                 <div class="bg-gray-800 text-gray-200 p-3 rounded-r-lg rounded-bl-lg text-sm border border-gray-700">
                     嘿！我是老王，士林這一帶我最熟啦！想找好吃的？問我就對了！😎
                 </div>
@@ -252,14 +329,18 @@
 
         <div class="p-4 bg-gray-800 rounded-b-2xl border-t border-gray-700">
             <div class="flex gap-2">
-                <input type="text" id="user-input" placeholder="問老王：雞排要排很久嗎？" 
+                <input type="text" id="user-input" placeholder="問老王：雞排要排很久嗎？"
                     class="flex-1 bg-gray-900 text-white text-sm rounded-full px-4 py-2 border border-gray-600 focus:outline-none focus:border-neonPink">
-                <button onclick="sendMessage()" class="bg-neonPink text-black rounded-full w-10 h-10 flex items-center justify-center font-bold hover:bg-white transition-colors">➤</button>
+                <button onclick="sendMessage()"
+                    class="bg-neonPink text-black rounded-full w-10 h-10 flex items-center justify-center font-bold hover:bg-white transition-colors">➤</button>
             </div>
             <div class="flex gap-2 mt-3 overflow-x-auto scrollbar-hide">
-                <button onclick="quickAsk('必吃推薦')" class="bg-gray-700 text-xs text-gray-300 px-3 py-1 rounded-full hover:bg-gray-600">必吃推薦</button>
-                <button onclick="quickAsk('廁所在哪')" class="bg-gray-700 text-xs text-gray-300 px-3 py-1 rounded-full hover:bg-gray-600">廁所在哪</button>
-                <button onclick="quickAsk('下雨怎辦')" class="bg-gray-700 text-xs text-gray-300 px-3 py-1 rounded-full hover:bg-gray-600">下雨怎辦</button>
+                <button onclick="quickAsk('必吃推薦')"
+                    class="bg-gray-700 text-xs text-gray-300 px-3 py-1 rounded-full hover:bg-gray-600">必吃推薦</button>
+                <button onclick="quickAsk('廁所在哪')"
+                    class="bg-gray-700 text-xs text-gray-300 px-3 py-1 rounded-full hover:bg-gray-600">廁所在哪</button>
+                <button onclick="quickAsk('下雨怎辦')"
+                    class="bg-gray-700 text-xs text-gray-300 px-3 py-1 rounded-full hover:bg-gray-600">下雨怎辦</button>
             </div>
         </div>
     </div>
@@ -284,29 +365,27 @@
         async function sendMessage() {
             const input = document.getElementById('user-input');
             const message = input.value.trim();
-            console.log("嘗試發送訊息:", message); // 除錯訊息
 
             if (!message) return;
 
+            // 1. 顯示使用者訊息
             appendMessage('user', message);
             input.value = '';
 
-            const aiMessageDiv = appendMessage('ai', ''); 
+            // 2. 建立 AI 訊息容器
+            const aiMessageDiv = appendMessageContainer('ai');
             aiMessageDiv.innerHTML = '<span class="animate-pulse">...</span>';
 
             try {
-                // 使用你提供的正確網址
-                const VERCEL_URL = 'https://night-market-bice.vercel.app/api/chat'; 
-                console.log("連線到:", VERCEL_URL); // 除錯訊息
-
-                const response = await fetch(VERCEL_URL, {
+                const response = await fetch('https://night-market-bice.vercel.app/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ message: message })
                 });
 
-                if (!response.ok) throw new Error('伺服器回應錯誤: ' + response.status);
+                if (!response.ok) throw new Error('API 錯誤: ' + response.status);
 
+                // 3. 處理串流回應
                 const reader = response.body.getReader();
                 const decoder = new TextDecoder();
                 let fullText = '';
@@ -314,51 +393,62 @@
                 while (true) {
                     const { done, value } = await reader.read();
                     if (done) break;
+
                     fullText += decoder.decode(value, { stream: true });
-                    
-                    // 使用 marked 解析 (需確保 marked 已載入)
+
+                    // 使用 marked 解析 Markdown（確保已載入 marked.js）
                     if (typeof marked !== 'undefined') {
                         aiMessageDiv.innerHTML = marked.parse(fullText);
                     } else {
                         aiMessageDiv.textContent = fullText;
                     }
-                    
+
+                    // 自動捲動到最新訊息
                     const chatMessages = document.getElementById('chat-messages');
                     chatMessages.scrollTop = chatMessages.scrollHeight;
                 }
 
             } catch (error) {
                 console.error('發生錯誤:', error);
-                aiMessageDiv.innerHTML = '哎呀！老王現在有點忙（連線錯誤），請檢查 Console 錯誤訊息！😅';
+                aiMessageDiv.innerHTML = '哎呀！老王現在有點忙（連線錯誤），請稍後再試！😅';
             }
         }
 
+        // 輔助函式：建立訊息容器（返回內容 div 以便後續更新）
+        function appendMessageContainer(sender) {
+            const chatMessages = document.getElementById('chat-messages');
+            const div = document.createElement('div');
+            div.className = 'flex items-start gap-2';
+
+            div.innerHTML = `
+        <div class="w-8 h-8 bg-neonPink rounded-full flex-shrink-0 flex items-center justify-center text-black font-bold text-xs">王</div>
+        <div class="bg-gray-800 text-gray-200 p-3 rounded-r-lg rounded-bl-lg text-sm border border-gray-700 max-w-[90%] prose"></div>
+    `;
+
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            return div.querySelector('.prose'); // 返回內容容器
+        }
+
+        // 保留原本的 appendMessage（用於使用者訊息）
         function appendMessage(sender, text) {
             const chatMessages = document.getElementById('chat-messages');
             const div = document.createElement('div');
             div.className = sender === 'user' ? 'flex justify-end' : 'flex items-start gap-2';
-            
-            const contentDiv = document.createElement('div');
+
             if (sender === 'user') {
-                contentDiv.className = "bg-neonPink text-black p-3 rounded-l-lg rounded-br-lg text-sm font-bold max-w-[80%]";
-                contentDiv.textContent = text;
-                div.appendChild(contentDiv);
-            } else {
-                div.innerHTML = `<div class="w-8 h-8 bg-neonPink rounded-full flex-shrink-0 flex items-center justify-center text-black font-bold text-xs">王</div>`;
-                contentDiv.className = "bg-gray-800 text-gray-200 p-3 rounded-r-lg rounded-bl-lg text-sm border border-gray-700 max-w-[90%] prose";
-                contentDiv.innerHTML = text; 
-                div.appendChild(contentDiv);
+                div.innerHTML = `<div class="bg-neonPink text-black p-3 rounded-l-lg rounded-br-lg text-sm font-bold max-w-[80%]">${text}</div>`;
             }
-            
+
             chatMessages.appendChild(div);
             chatMessages.scrollTop = chatMessages.scrollHeight;
-            return contentDiv;
         }
-
         // Enter 鍵發送
         document.getElementById('user-input').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') sendMessage();
         });
     </script>
 </body>
+
 </html>
